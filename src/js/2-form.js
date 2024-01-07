@@ -18,9 +18,9 @@ label.classList.add('labelname');
 const initialMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
 if (initialMessage) {
-  textarea.value = initialMessage.message.trim();
-  input.value = initialMessage.email.trim();
-  btn.disabled = !(input.value && textarea.value);
+  textarea.value = initialMessage.message;
+  input.value = initialMessage.email;
+  btn.disabled = !(input.value.trim() && textarea.value.trim());
 }
 
 form.addEventListener(
@@ -28,9 +28,9 @@ form.addEventListener(
   throttle(() => {
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ email: input.value, message: textarea.value })
+      JSON.stringify({ email: input.value.trim(), message: textarea.value.trim() })
     );
-    btn.disabled = !(input.value && textarea.value);
+    btn.disabled = !(input.value.trim() && textarea.value.trim());
   }, 500)
 );
 
@@ -48,8 +48,6 @@ form.addEventListener('submit', event => {
     alert('Будь ласка, заповніть всі поля форми.');
   }
 
-  //   console.log({ email: input.value, message: textarea.value });
-  //   form.reset();
-  //   localStorage.removeItem(STORAGE_KEY);
+  
   btn.disabled = true;
 });
