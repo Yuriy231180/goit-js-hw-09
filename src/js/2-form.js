@@ -28,7 +28,10 @@ form.addEventListener(
   throttle(() => {
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ email: input.value.trim(), message: textarea.value.trim() })
+      JSON.stringify({
+        email: input.value.trim(),
+        message: textarea.value.trim(),
+      })
     );
     btn.disabled = !(input.value.trim() && textarea.value.trim());
   }, 500)
@@ -47,7 +50,5 @@ form.addEventListener('submit', event => {
   } else {
     alert('Будь ласка, заповніть всі поля форми.');
   }
-
-  
   btn.disabled = true;
 });
